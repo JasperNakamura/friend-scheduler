@@ -45,11 +45,6 @@ function addPerson(name = "") {
   renderPeople();
 }
 
-function removePerson(id) {
-  people = people.filter((p) => p.id !== id);
-  renderPeople();
-}
-
 function addAvailableSlot(personId) {
   const person = people.find((p) => p.id === personId);
   if (person) {
@@ -70,13 +65,6 @@ function removeAvailableSlot(personId, slotId) {
       (s) => s.id !== slotId,
     );
     renderPeople();
-  }
-}
-
-function updatePersonName(personId, name) {
-  const person = people.find((p) => p.id === personId);
-  if (person) {
-    person.name = name;
   }
 }
 
