@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When can we hang?</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>When can we hang?</h1>
+            <p class="subtitle">Find time that works for everyone</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section" id="peopleContainer">
+                <!-- Person inputs will be added dynamically -->
+            </div>
+
+            <button class="calculate-btn" onclick="calculateAvailability()">
+                Calculate available times
+            </button>
+
+            <div class="results" id="results">
+                <h2>Available times</h2>
+                <div id="resultsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
