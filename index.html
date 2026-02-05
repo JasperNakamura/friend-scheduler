@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>When can we hang?</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/indicators.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/results.css">  </head>
   <body>
     <div class="container">
       <header>
@@ -37,9 +42,6 @@
         </div>
       </div>
     </div>
-
-    <script src="js/data.js"></script>
-    <script src="js/main.js"></script>
 
     <div id="rangeModal" class="modal">
       <div class="modal-content">
@@ -82,5 +84,26 @@
         </div>
       </div>
     </div>
+
+    <!-- Data (optional - your schedule data) -->
+    <script src="js/data.js"></script>
+
+    <!-- State (must load first) -->
+    <script src="js/state.js"></script>
+
+    <!-- Core modules -->
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+
+    <!-- Feature modules -->
+    <script src="js/people.js"></script>
+    <script src="js/slots.js"></script>
+    <script src="js/ranges.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/calculations.js"></script>
+    <script src="js/ui.js"></script>
+
+    <!-- Main initialization (must load last) -->
+    <script src="js/main.js"></script>
   </body>
 </html>

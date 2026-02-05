@@ -1,0 +1,39 @@
+/* ============================================
+   INDICATORS.CSS - Status Indicators
+   ============================================ */
+
+/* SELECTED PEOPLE INDICATOR */
+.selected-indicator {
+    background: rgba(97, 218, 251, 0.1);
+    border-left: 3px solid #61dafb;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.selected-indicator.warning {
+    background: rgba(255, 152, 0, 0.1);
+    border-left-color: #ff9800;
+    color: #ffb74d;
+}
+
+.selected-indicator strong {
+    color: #61dafb;
+}
+
+/* MINIMUM LENGTH INDICATOR */
+.minimum-length-indicator {
+    background: rgba(97, 218, 251, 0.05);
+    border-left: 3px solid #4a4a4a;
+    padding: 10px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    color: #b0b0b0;
+    font-size: 0.875rem;
+}
+
+.minimum-length-indicator strong {
+    color: #e0e0e0;
+}

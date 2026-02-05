@@ -1,0 +1,200 @@
+/* ============================================
+   CARDS.CSS - Person Cards, Slots, Ranges
+   ============================================ */
+
+/* PERSON CARDS */
+.person-input {
+    background: #2a2a2a;
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid #3a3a3a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.person-input:hover {
+    border-color: #61dafb;
+}
+
+.person-input.inactive {
+    opacity: 0.4;
+    background: #1a1a1a;
+    border-color: #2a2a2a;
+}
+
+.person-input h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #61dafb;
+}
+
+/* DATE RANGES SECTION */
+.ranges-section {
+    margin-bottom: 20px;
+}
+
+.range-card {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.range-card:hover {
+    border-color: #4a4a4a;
+}
+
+.range-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.range-header:hover {
+    background: rgba(97, 218, 251, 0.05);
+}
+
+.range-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.range-dates {
+    color: #61dafb;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.range-time {
+    color: #b0b0b0;
+    font-size: 0.875rem;
+}
+
+.range-count {
+    color: #808080;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.range-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-left: 12px;
+}
+
+.range-expanded {
+    border-top: 1px solid #3a3a3a;
+    background: #1e1e1e;
+    padding: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.range-day {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: #2a2a2a;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-size: 0.875rem;
+    border-left: 3px solid #61dafb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.range-day:last-child {
+    margin-bottom: 0;
+}
+
+/* SINGLE TIME SLOTS */
+.time-slots {
+    margin-top: 16px;
+}
+
+/* Display mode - styled card */
+.time-slot.display-mode {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.time-slot.display-mode:hover {
+    background: rgba(97, 218, 251, 0.05);
+    border-color: #4a4a4a;
+}
+
+.slot-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.slot-date {
+    color: #61dafb;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.slot-separator {
+    color: #4a4a4a;
+    font-weight: 300;
+}
+
+.slot-time {
+    color: #b0b0b0;
+    font-size: 0.875rem;
+}
+
+/* Edit mode - input fields */
+.time-slot.editing {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s;
+}
+
+.time-slot.editing:hover {
+    border-color: #4a4a4a;
+}
+
+.time-slot-info {
+    flex: 1;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
