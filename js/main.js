@@ -19,6 +19,7 @@ function loadFromData(data) {
     const newPerson = {
       id: personIdCounter++,
       name: person.name,
+      profileImage: person.profileImage,
       selected: true,
       availableSlots: person.availableSlots.map((slot) => ({
         id: Date.now() + Math.random(),
@@ -36,6 +37,7 @@ function addPerson(name = "") {
   const person = {
     id: personIdCounter++,
     name: name,
+    profileImage: "",
     selected: true,
     availableSlots: [],
   };
@@ -102,7 +104,10 @@ function renderPeople() {
         <div class="person-input ${person.selected ? '' : 'inactive'}" 
              onclick="togglePerson(${person.id})"
              style="cursor: pointer;">
-            <h2>${person.name}</h2>
+            <h2>
+              ${person.name}
+              <img src="${person.profileImage}" alt="${person.name}" class="profile-img">
+            </h2>
             
             <div class="time-slots">
                 <label>Available times</label>

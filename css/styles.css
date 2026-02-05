@@ -77,10 +77,10 @@ h1 {
 }
 
 .person-input h2 {
-    color: #ffffff;
-    margin-bottom: 20px;
-    font-size: 1.25rem;
-    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;  /* Add this if needed */
 }
 
 label {
@@ -283,3 +283,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
     cursor: pointer;
 }
+
+.profile-img {
+       width: 40px;
+       height: 40px;
+       border-radius: 50%;  /* Makes it circular */
+       object-fit: cover;
+       border: 2px solid #61dafb;
+   }

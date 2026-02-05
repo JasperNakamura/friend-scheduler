@@ -2,6 +2,7 @@ const scheduleData = {
   people: [
     {
       name: "Jasper",
+      profileImage: "assets/images/jasper.png",
       selected: true,
       availableSlots: [
         {
@@ -13,6 +14,7 @@ const scheduleData = {
     },
     {
       name: "Andrew",
+      profileImage: "assets/images/andrew.png",
       selected: true,
       availableSlots: [
         {
@@ -24,6 +26,7 @@ const scheduleData = {
     },
     {
       name: "Tat",
+      profileImage: "assets/images/tat.png",
       selected: true,
       availableSlots: [
         {
@@ -35,6 +38,7 @@ const scheduleData = {
     },
     {
       name: "Ari",
+      profileImage: "assets/images/ari.png",
       selected: true,
       availableSlots: [
         {
@@ -46,6 +50,7 @@ const scheduleData = {
     },
     {
       name: "Alex",
+      profileImage: "assets/images/alex.png",
       selected: true,
       availableSlots: [
         {
@@ -57,6 +62,7 @@ const scheduleData = {
     },
     {
       name: "Wilson",
+      profileImage: "assets/images/wilson.png",
       selected: true,
       availableSlots: [
         {
@@ -68,6 +74,7 @@ const scheduleData = {
     },
     {
       name: "Emmanuel",
+      profileImage: "assets/images/em.png",
       selected: true,
       availableSlots: [
         {
