@@ -1,35 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>When can we hang?</title>
-    <link rel="stylesheet" href="./css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>When can we hang?</h1>
-            <p class="subtitle">Find time that works for everyone</p>
-        </header>
+      <header>
+        <h1>When can we hang?</h1>
+        <p class="subtitle">Find time that works for everyone</p>
+      </header>
 
-        <div class="main-content">
-            <div class="input-section" id="peopleContainer">
-                <!-- Person inputs will be added dynamically -->
-            </div>
-
-            <button class="calculate-btn" onclick="calculateAvailability()">
-                Calculate available times
-            </button>
-
-            <div class="results" id="results">
-                <h2>Available times</h2>
-                <div id="resultsContent"></div>
-            </div>
+      <div class="main-content">
+        <div class="selection-controls">
+          <button class="control-btn" onclick="selectAll()">Select All</button>
+          <button class="control-btn" onclick="deselectAll()">
+            Deselect All
+          </button>
         </div>
+        <div id="selectedIndicator"></div>
+        <div id="minimumLengthIndicator"></div>
+
+        <div class="input-section" id="peopleContainer">
+          <!-- Person inputs will be added dynamically -->
+        </div>
+
+        <button class="calculate-btn" onclick="calculateAvailability()">
+          Calculate available times
+        </button>
+
+        <div class="results" id="results">
+          <h2>Available times</h2>
+          <div id="resultsContent"></div>
+        </div>
+      </div>
     </div>
 
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
-</body>
+
+    <div id="rangeModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Add Date Range</h2>
+          <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="modalStartDate">Start Date</label>
+            <input type="date" id="modalStartDate" class="modal-input" />
+          </div>
+
+          <div class="form-group">
+            <label for="modalEndDate">End Date</label>
+            <input type="date" id="modalEndDate" class="modal-input" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modalStartTime">Start Time</label>
+              <input type="time" id="modalStartTime" class="modal-input" />
+            </div>
+
+            <div class="form-group">
+              <label for="modalEndTime">End Time</label>
+              <input type="time" id="modalEndTime" class="modal-input" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="modal-btn cancel-btn" onclick="closeModal()">
+            Cancel
+          </button>
+          <button class="modal-btn submit-btn" onclick="submitDateRange()">
+            Add Range
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

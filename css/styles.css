@@ -1,3 +1,6 @@
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -6,16 +9,17 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #121212;
     min-height: 100vh;
-    padding: 0;
     color: #e0e0e0;
 }
 
+/* ============================================
+   LAYOUT
+   ============================================ */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -33,7 +37,6 @@ header {
 h1 {
     font-size: 1.75rem;
     font-weight: 600;
-    margin: 0;
     color: #ffffff;
 }
 
@@ -49,6 +52,9 @@ h1 {
     padding: 40px;
 }
 
+/* ============================================
+   PERSON CARDS
+   ============================================ */
 .input-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -61,28 +67,44 @@ h1 {
     padding: 24px;
     border-radius: 8px;
     border: 1px solid #3a3a3a;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    cursor: pointer;  /* ← Add this */
-    transition: all 0.3s;  /* ← Add this */
-}
-
-.person-input.inactive {
-    opacity: 0.4;
-    background: #1a1a1a;
-    border-color: #2a2a2a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 .person-input:hover {
     border-color: #61dafb;
 }
 
+/* Unselected person card */
+.person-input.inactive {
+    opacity: 0.4;
+    background: #1a1a1a;
+    border-color: #2a2a2a;
+}
+
 .person-input h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;  /* Add this if needed */
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
+/* Profile image in top right */
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #61dafb;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
 label {
     display: block;
     margin-bottom: 8px;
@@ -91,38 +113,214 @@ label {
     font-size: 0.875rem;
 }
 
-input[type="text"] {
-    width: 100%;
+input[type="text"],
+input[type="date"],
+input[type="time"] {
     padding: 10px 12px;
     border: 1px solid #3a3a3a;
     border-radius: 4px;
-    font-size: 1rem;
-    margin-bottom: 16px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    font-family: inherit;
+    font-size: 0.875rem;
     background: #1e1e1e;
     color: #e0e0e0;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-input[type="text"]:focus {
+input[type="text"] {
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 16px;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus {
     outline: none;
     border-color: #61dafb;
     box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.15);
 }
 
+/* Date/time picker icon styling */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* ============================================
+   DATE RANGES SECTION
+   ============================================ */
+.ranges-section {
+    margin-bottom: 20px;
+}
+
+.range-card {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.range-card:hover {
+    border-color: #4a4a4a;
+}
+
+/* Collapsible header */
+.range-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.range-header:hover {
+    background: rgba(97, 218, 251, 0.05);
+}
+
+/* Range info display */
+.range-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.range-dates {
+    color: #61dafb;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.range-time {
+    color: #b0b0b0;
+    font-size: 0.875rem;
+}
+
+.range-count {
+    color: #808080;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* Expand/delete buttons */
+.range-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-left: 12px;
+}
+
+.expand-btn {
+    background: transparent;
+    border: 1px solid #3a3a3a;
+    color: #61dafb;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    min-width: 32px;
+}
+
+.expand-btn:hover {
+    background: rgba(97, 218, 251, 0.1);
+    border-color: #61dafb;
+}
+
+/* Expanded range view */
+.range-expanded {
+    border-top: 1px solid #3a3a3a;
+    background: #1e1e1e;
+    padding: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.range-day {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: #2a2a2a;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-size: 0.875rem;
+    border-left: 3px solid #61dafb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.range-day:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   SINGLE TIME SLOTS SECTION
+   ============================================ */
 .time-slots {
     margin-top: 16px;
 }
 
-.time-slot {
-    background: #1e1e1e;
-    padding: 12px;
-    border-radius: 4px;
+/* Display mode - styled card view */
+.time-slot.display-mode {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    padding: 12px 16px;
+    border-radius: 6px;
     margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.time-slot.display-mode:hover {
+    background: rgba(97, 218, 251, 0.05);
+    border-color: #4a4a4a;
+}
+
+.slot-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.slot-date {
+    color: #61dafb;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.slot-separator {
+    color: #4a4a4a;
+    font-weight: 300;
+}
+
+.slot-time {
+    color: #b0b0b0;
+    font-size: 0.875rem;
+}
+
+/* Edit mode - input fields */
+.time-slot.editing {
+    background: #2a2a2a;
     border: 1px solid #3a3a3a;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s;
+}
+
+.time-slot.editing:hover {
+    border-color: #4a4a4a;
 }
 
 .time-slot-info {
@@ -132,6 +330,9 @@ input[type="text"]:focus {
     flex-wrap: wrap;
 }
 
+/* ============================================
+   BUTTONS
+   ============================================ */
 .remove-btn {
     background: transparent;
     color: #f44336;
@@ -140,14 +341,21 @@ input[type="text"]:focus {
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.875rem;
-    transition: all 0.2s;
     font-family: inherit;
     font-weight: 500;
+    transition: all 0.2s;
 }
 
 .remove-btn:hover {
     background: #f44336;
     color: white;
+}
+
+/* Add time slot buttons container */
+.slot-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
 }
 
 .add-slot-btn {
@@ -158,17 +366,27 @@ input[type="text"]:focus {
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.875rem;
-    width: 100%;
-    margin-top: 12px;
-    transition: all 0.2s;
+    flex: 1;
     font-family: inherit;
     font-weight: 500;
+    transition: all 0.2s;
 }
 
 .add-slot-btn:hover {
     background: rgba(97, 218, 251, 0.1);
 }
 
+/* Date range button variant */
+.add-slot-btn.range-btn {
+    color: #b388ff;
+    border-color: #b388ff;
+}
+
+.add-slot-btn.range-btn:hover {
+    background: rgba(179, 136, 255, 0.1);
+}
+
+/* Main calculate button */
 .calculate-btn {
     background: #61dafb;
     color: #121212;
@@ -179,10 +397,10 @@ input[type="text"]:focus {
     font-size: 1rem;
     width: 100%;
     margin: 24px 0;
-    transition: all 0.2s;
     font-weight: 600;
     font-family: inherit;
     box-shadow: 0 2px 8px rgba(97, 218, 251, 0.3);
+    transition: all 0.2s;
 }
 
 .calculate-btn:hover {
@@ -194,6 +412,73 @@ input[type="text"]:focus {
     transform: translateY(1px);
 }
 
+/* ============================================
+   SELECTION CONTROLS
+   ============================================ */
+.selection-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.control-btn {
+    background: transparent;
+    color: #61dafb;
+    border: 1px solid #3a3a3a;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-family: inherit;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.control-btn:hover {
+    background: rgba(97, 218, 251, 0.1);
+    border-color: #61dafb;
+}
+
+/* ============================================
+   INDICATORS
+   ============================================ */
+.selected-indicator {
+    background: rgba(97, 218, 251, 0.1);
+    border-left: 3px solid #61dafb;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.selected-indicator.warning {
+    background: rgba(255, 152, 0, 0.1);
+    border-left-color: #ff9800;
+    color: #ffb74d;
+}
+
+.selected-indicator strong {
+    color: #61dafb;
+}
+
+.minimum-length-indicator {
+    background: rgba(97, 218, 251, 0.05);
+    border-left: 3px solid #4a4a4a;
+    padding: 10px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    color: #b0b0b0;
+    font-size: 0.875rem;
+}
+
+.minimum-length-indicator strong {
+    color: #e0e0e0;
+}
+
+/* ============================================
+   RESULTS SECTION
+   ============================================ */
 .results {
     margin-top: 32px;
     padding: 24px;
@@ -252,6 +537,12 @@ input[type="text"]:focus {
     border-left: 3px solid #61dafb;
 }
 
+.duration {
+    color: #808080;
+    font-size: 0.8rem;
+    margin-left: 8px;
+}
+
 .no-results {
     text-align: center;
     padding: 48px;
@@ -259,35 +550,158 @@ input[type="text"]:focus {
     font-size: 1rem;
 }
 
-input[type="date"],
-input[type="time"] {
-    padding: 8px 10px;
-    border: 1px solid #3a3a3a;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    font-family: inherit;
-    background: #1e1e1e;
-    color: #e0e0e0;
+/* ============================================
+   MODAL
+   ============================================ */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
 }
 
-input[type="date"]:focus,
-input[type="time"]:focus {
+.modal-content {
+    background: #1e1e1e;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.modal-header h2 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: #808080;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #f44336;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #b0b0b0;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px;
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal-input:focus {
     outline: none;
     border-color: #61dafb;
     box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.15);
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator,
-input[type="time"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
-.profile-img {
-       width: 40px;
-       height: 40px;
-       border-radius: 50%;  /* Makes it circular */
-       object-fit: cover;
-       border: 2px solid #61dafb;
-   }
+.modal-footer {
+    display: flex;
+    gap: 12px;
+    padding: 20px 24px;
+    border-top: 1px solid #3a3a3a;
+    justify-content: flex-end;
+}
+
+.modal-btn {
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    transition: all 0.2s;
+}
+
+.cancel-btn {
+    background: transparent;
+    color: #808080;
+    border: 1px solid #3a3a3a;
+}
+
+.cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #b0b0b0;
+}
+
+.submit-btn {
+    background: #61dafb;
+    color: #121212;
+}
+
+.submit-btn:hover {
+    background: #4fa8c5;
+    box-shadow: 0 4px 12px rgba(97, 218, 251, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+}
