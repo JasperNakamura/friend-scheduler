@@ -104,7 +104,7 @@ function renderPeople() {
             }
             
             <div class="time-slots" onclick="event.stopPropagation()">
-                <label>Single Times</label>
+                <label>Available Times</label>
                 ${person.availableSlots
                   .map(
                     (slot) => {

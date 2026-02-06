@@ -129,8 +129,22 @@
 }
 
 /* SINGLE TIME SLOTS */
-.time-slots {
-    margin-top: 16px;
+.time-slot {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.time-slot input[type="date"] {
+  flex: 0 0 140px; /* fixed width */
+}
+
+.time-slot input[type="time"] {
+  flex: 0 0 100px; /* fixed width */
+}
+
+.time-slot button {
+  margin-left: auto;
 }
 
 /* Display mode - styled card */
