@@ -12,6 +12,12 @@ function addAvailableSlot(personId) {
     });
     saveToLocalStorage();
     renderPeople();
+    
+    // Focus on the date input after render
+    setTimeout(() => {
+      const newSlotId = person.availableSlots[person.availableSlots.length - 1].id;
+      document.getElementById(`date-${personId}-${newSlotId}`)?.focus();
+    }, 0);
   }
 }
 
@@ -26,54 +32,65 @@ function removeAvailableSlot(personId, slotId) {
   }
 }
 
-function updateSlot(personId, slotId, field, value) {
-  const person = people.find((p) => p.id === personId);
-  if (person) {
-    const slot = person.availableSlots.find((s) => s.id === slotId);
-    if (slot) {
-      slot[field] = value;
-      saveToLocalStorage();
-    }
-  }
-}
-
 function toggleSlotEdit(personId, slotId) {
   const person = people.find((p) => p.id === personId);
   if (person) {
     const slot = person.availableSlots.find((s) => s.id === slotId);
     if (slot) {
-      slot.editing = !slot.editing;
+      slot.editing = true;
       renderPeople();
-
-      // Set up click-outside detection if entering edit mode
-      if (slot.editing) {
-        setTimeout(() => setupClickOutside(personId, slotId), 100);
-      }
+      
+      // Focus on date input after render
+      setTimeout(() => {
+        document.getElementById(`date-${personId}-${slotId}`)?.focus();
+      }, 0);
     }
   }
 }
 
-function setupClickOutside(personId, slotId) {
-  const handler = (e) => {
-    // Check if click is outside the editing slot
-    const editingSlot = e.target.closest(".time-slot.editing");
-    if (!editingSlot) {
-      saveSlotAndExit(personId, slotId);
-      document.removeEventListener("click", handler);
-    }
-  };
-  document.addEventListener("click", handler);
+function saveSlot(personId, slotId) {
+  const person = people.find(p => p.id === personId);
+  const slot = person.availableSlots.find(s => s.id === slotId);
+  
+  // Get values from inputs
+  const date = document.getElementById(`date-${personId}-${slotId}`).value;
+  const startTime = document.getElementById(`start-${personId}-${slotId}`).value;
+  const endTime = document.getElementById(`end-${personId}-${slotId}`).value;
+  
+  // Validate all fields are filled
+  if (!date || !startTime || !endTime) {
+    alert('Please fill in all fields (date, start time, and end time)');
+    return;
+  }
+  
+  // Validate end time is after start time
+  if (startTime >= endTime) {
+    alert('End time must be after start time');
+    return;
+  }
+  
+  // Save the changes
+  slot.date = date;
+  slot.startTime = startTime;
+  slot.endTime = endTime;
+  slot.editing = false;
+  
+  saveToLocalStorage();
+  renderPeople();
 }
 
-function saveSlotAndExit(personId, slotId) {
-  const person = people.find((p) => p.id === personId);
-  if (person) {
-    const slot = person.availableSlots.find((s) => s.id === slotId);
-    // Only exit edit mode if all fields are filled
-    if (slot && slot.date && slot.startTime && slot.endTime) {
-      slot.editing = false;
-      saveToLocalStorage();
-      renderPeople();
-    }
+function cancelSlotEdit(personId, slotId) {
+  const person = people.find(p => p.id === personId);
+  const slot = person.availableSlots.find(s => s.id === slotId);
+  
+  // If it's a new slot with no data, remove it entirely
+  if (!slot.date && !slot.startTime && !slot.endTime) {
+    person.availableSlots = person.availableSlots.filter(s => s.id !== slotId);
+  } else {
+    // Just exit edit mode without saving changes
+    slot.editing = false;
   }
+  
+  saveToLocalStorage();
+  renderPeople();
 }

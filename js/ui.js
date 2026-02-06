@@ -58,10 +58,7 @@ function renderPeople() {
                 <label>Date Ranges</label>
                 ${person.ranges
                   .map((range) => {
-                    const days = getDaysInRange(
-                      range.startDate,
-                      range.endDate,
-                    );
+                    const days = getDaysInRange(range.startDate, range.endDate);
                     const dayCount = days.length;
                     return `
                     <div class="range-card">
@@ -105,48 +102,51 @@ function renderPeople() {
             
             <div class="time-slots" onclick="event.stopPropagation()">
                 <label>Available Times</label>
-                ${person.availableSlots
-                  .map(
-                    (slot) => {
-                      // Check if slot has data to display
-                      const hasData =
-                        slot.date && slot.startTime && slot.endTime;
-                      const isEditing = slot.editing || !hasData;
+            ${person.availableSlots
+              .map((slot) => {
+                // Check if slot has data to display
+                const hasData = slot.date && slot.startTime && slot.endTime;
+                const isEditing = slot.editing || !hasData;
 
-                      if (isEditing) {
-                        // Show input fields
-                        return `
-                                <div class="time-slot editing">
-                                    <div class="time-slot-info">
-                                        <input type="date" 
-                                               value="${slot.date}"
-                                               onchange="updateSlot(${person.id}, ${slot.id}, 'date', this.value)">
-                                        <input type="time" 
-                                               value="${slot.startTime}"
-                                               onchange="updateSlot(${person.id}, ${slot.id}, 'startTime', this.value)">
-                                        <input type="time" 
-                                               value="${slot.endTime}"
-                                               onchange="updateSlot(${person.id}, ${slot.id}, 'endTime', this.value)">
-                                    </div>
-                                    <button class="remove-btn" onclick="removeAvailableSlot(${person.id}, ${slot.id})">🗑</button>
-                                </div>
-                            `;
-                      } else {
-                        // Show as styled card
-                        return `
-                                <div class="time-slot display-mode" onclick="toggleSlotEdit(${person.id}, ${slot.id})">
-                                    <div class="slot-display">
-                                        <span class="slot-date">${formatDateShort(slot.date)}</span>
-                                        <span class="slot-separator">•</span>
-                                        <span class="slot-time">${slot.startTime} - ${slot.endTime}</span>
-                                    </div>
-                                    <button class="remove-btn" onclick="event.stopPropagation(); removeAvailableSlot(${person.id}, ${slot.id})">🗑</button>
-                                </div>
-                            `;
-                      }
-                    },
-                  )
-                  .join("")}
+                if (isEditing) {
+                  // Show input fields with save/cancel buttons
+                  return `
+                        <div class="time-slot editing">
+                            <div class="time-slot-inputs">
+                                <input type="date" 
+                                      id="date-${person.id}-${slot.id}"
+                                      value="${slot.date}"
+                                      placeholder="mm/dd/yyyy">
+                                <input type="time" 
+                                      id="start-${person.id}-${slot.id}"
+                                      value="${slot.startTime}"
+                                      placeholder="--:--">
+                                <input type="time" 
+                                      id="end-${person.id}-${slot.id}"
+                                      value="${slot.endTime}"
+                                      placeholder="--:--">
+                            </div>
+                            <div class="slot-actions-inline">
+                                <button class="save-btn" onclick="saveSlot(${person.id}, ${slot.id})">✓ Save</button>
+                                <button class="cancel-btn" onclick="cancelSlotEdit(${person.id}, ${slot.id})">✗ Cancel</button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                  // Show as styled card
+                  return `
+                        <div class="time-slot display-mode" onclick="toggleSlotEdit(${person.id}, ${slot.id})">
+                            <div class="slot-display">
+                                <span class="slot-date">${formatDateShort(slot.date)}</span>
+                                <span class="slot-separator">•</span>
+                                <span class="slot-time">${slot.startTime} - ${slot.endTime}</span>
+                            </div>
+                            <button class="remove-btn" onclick="event.stopPropagation(); removeAvailableSlot(${person.id}, ${slot.id})">🗑</button>
+                        </div>
+                    `;
+                }
+              })
+              .join("")}
             </div>
             
             <div class="slot-actions" onclick="event.stopPropagation()">

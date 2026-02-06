@@ -129,23 +129,6 @@
 }
 
 /* SINGLE TIME SLOTS */
-.time-slot {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.time-slot input[type="date"] {
-  flex: 0 0 140px; /* fixed width */
-}
-
-.time-slot input[type="time"] {
-  flex: 0 0 100px; /* fixed width */
-}
-
-.time-slot button {
-  margin-left: auto;
-}
 
 /* Display mode - styled card */
 .time-slot.display-mode {
@@ -189,26 +172,90 @@
     font-size: 0.875rem;
 }
 
-/* Edit mode - input fields */
+/* Edit mode - input fields with save/cancel */
 .time-slot.editing {
     background: #2a2a2a;
     border: 1px solid #3a3a3a;
     padding: 12px;
     border-radius: 6px;
     margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     transition: border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
 }
 
 .time-slot.editing:hover {
     border-color: #4a4a4a;
 }
 
-.time-slot-info {
-    flex: 1;
+.time-slot-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.time-slot-inputs input[type="date"] {
+    grid-column: 1 / -1; /* span both columns */
+    background: #1e1e1e;
+    border: 1px solid #3a3a3a;
+    color: #e0e0e0;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.time-slot-inputs input[type="time"] {
+    background: #1e1e1e;
+    border: 1px solid #3a3a3a;
+    color: #e0e0e0;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.time-slot-inputs input:focus {
+    outline: none;
+    border-color: #61dafb;
+}
+
+.slot-actions-inline {
     display: flex;
     gap: 8px;
-    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.save-btn {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.save-btn:hover {
+    background: #059669;
+}
+
+.cancel-btn {
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #4b5563;
 }
