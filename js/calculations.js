@@ -109,9 +109,22 @@ function findOverlap(periods1, periods2) {
   return mergeIntervals(overlaps);
 }
 
-function timeToMinutes(timeString) {
-  const [hours, minutes] = timeString.split(":").map(Number);
+function timeToMinutes(time) {
+  const [hours, minutes] = time.split(':').map(Number);
   return hours * 60 + minutes;
+}
+
+// When processing slots, check for overnight flag
+function getSlotMinutes(slot) {
+  const start = timeToMinutes(slot.startTime);
+  let end = timeToMinutes(slot.endTime);
+  
+  // If it's overnight, add 24 hours (1440 minutes) to end time
+  if (slot.overnight) {
+    end += 1440;
+  }
+  
+  return { start, end };
 }
 
 function minutesToTime(minutes) {

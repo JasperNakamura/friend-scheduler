@@ -63,16 +63,14 @@ function saveSlot(personId, slotId) {
     return;
   }
   
-  // Validate end time is after start time
-  if (startTime >= endTime) {
-    alert('End time must be after start time');
-    return;
-  }
+  // Check if it's an overnight slot (end time is earlier than start time)
+  const isOvernight = startTime >= endTime;
   
   // Save the changes
   slot.date = date;
   slot.startTime = startTime;
   slot.endTime = endTime;
+  slot.overnight = isOvernight; // Flag for overnight slots
   slot.editing = false;
   
   saveToLocalStorage();

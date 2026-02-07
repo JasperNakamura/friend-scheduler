@@ -135,15 +135,15 @@ function renderPeople() {
                 } else {
                   // Show as styled card
                   return `
-                        <div class="time-slot display-mode" onclick="toggleSlotEdit(${person.id}, ${slot.id})">
-                            <div class="slot-display">
-                                <span class="slot-date">${formatDateShort(slot.date)}</span>
-                                <span class="slot-separator">•</span>
-                                <span class="slot-time">${slot.startTime} - ${slot.endTime}</span>
-                            </div>
-                            <button class="remove-btn" onclick="event.stopPropagation(); removeAvailableSlot(${person.id}, ${slot.id})">🗑</button>
+                    <div class="time-slot display-mode" onclick="toggleSlotEdit(${person.id}, ${slot.id})">
+                        <div class="slot-display">
+                            <span class="slot-date">${formatDateShort(slot.date)}</span>
+                            <span class="slot-separator">•</span>
+                            <span class="slot-time">${slot.startTime} - ${slot.endTime}${slot.overnight ? " (+1)" : ""}</span>
                         </div>
-                    `;
+                        <button class="remove-btn" onclick="event.stopPropagation(); removeAvailableSlot(${person.id}, ${slot.id})">🗑</button>
+                    </div>
+                  `;
                 }
               })
               .join("")}
